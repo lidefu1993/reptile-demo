@@ -12,12 +12,11 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 public class MyCrawlerTest {
 
     public static void main(String[] args) throws Exception {
-        String crawlStorageFolder = "D:\\test\\crawler";
+            String crawlStorageFolder = "D:\\test\\crawler";
         int numberOfCrawlers = 7;
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
-
         /*
          * Instantiate the controller for this crawl.
          */

@@ -12,9 +12,8 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 public class DetailTest {
 
     public static void main(String[] args) throws Exception {
-        String crawlStorageFolder = "D:\\test\\crawler";
+        String crawlStorageFolder = "D:\\test\\crawler1";
         int numberOfCrawlers = 7;
-
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
 
@@ -25,7 +24,6 @@ public class DetailTest {
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
-
         /*
          * For each crawl, you need to add some seed urls. These are the first
          * URLs that are fetched and then the crawler starts following links
@@ -37,6 +35,7 @@ public class DetailTest {
          * will reach the line after this only when crawling is finished.
          */
         controller.start(DetailCrawler.class, numberOfCrawlers);
+
     }
 
 }

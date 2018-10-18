@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -40,6 +41,7 @@ public class DetailCrawler extends WebCrawler {
             String text = htmlParseData.getText();
             String html = htmlParseData.getHtml();
             Set<WebURL> links = htmlParseData.getOutgoingUrls();
+            dataUrls(links);
             Document document = Jsoup.parse(html);
             //喜欢的数量
             Element likeElements = document.getElementById("TitleLike");
@@ -62,6 +64,20 @@ public class DetailCrawler extends WebCrawler {
             System.out.println("Number of outgoing links: " + links.size());
         }
         System.out.println("ending-------------------------------------");
+    }
+
+    /**
+     * 筛选url
+     * @param urls
+     */
+    private void dataUrls(Set<WebURL> urls){
+        Set<WebURL> dataUrl = new HashSet<>();
+        urls.stream().forEach(url->{
+            String y = url.getURL();
+            if(!url.getURL().contains("html") && !url.getURL().contains(".jpg") && !url.getURL().contains(".png"))
+                dataUrl.add(url);
+        });
+        System.out.println(dataUrl);
     }
 
 }

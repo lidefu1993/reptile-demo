@@ -1,5 +1,6 @@
 package com.ldf.reptile.crawler4j;
 
+import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -9,6 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -55,6 +57,16 @@ public class MyCrawler extends WebCrawler {
             System.out.println("Text length: " + text.length());
             System.out.println("Html length: " + html.length());
             System.out.println("Number of outgoing links: " + links.size());
+
+            String crawlStorageFolder = "D:\\test\\crawler2";
+            try {
+                CrawlController crawlController = Util.controllerInstance(crawlStorageFolder, Arrays.asList("http://you.ctrip.com/travels/tianzhushan161/3720048.html"));
+                crawlController.startNonBlocking(DetailCrawler.class, 1);
+                crawlController.waitUntilFinish();
+                System.out.println("------------------finish DetailCrawler");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("ending-------------------------------------");
     }
